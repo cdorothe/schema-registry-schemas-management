@@ -1,6 +1,6 @@
 {
   "type" : "record",
-  "name" : "TVShow1",
+  "name" : "TVShow",
   "namespace" : "com.chdor.schema_registry.schemas.management.avro.model",
   "doc" : "Descriptive card of series of the year 1970- 1980",
   "fields" : [ {
