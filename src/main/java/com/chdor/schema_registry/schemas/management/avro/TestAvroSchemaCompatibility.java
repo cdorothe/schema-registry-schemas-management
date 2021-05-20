@@ -20,7 +20,7 @@ import io.confluent.kafka.schemaregistry.client.rest.entities.SchemaReference;
 public class TestAvroSchemaCompatibility {
 
 	public static void main(String[] args) {
-		// Define the Schemas used for compatibility tests
+		// Define and loads the Schemas used for compatibility tests. Retrieves Schema as String
 		String tvShowSchema	 =  Utils.load("avro-schema/TVShow.avsc");
 		String schemaAddFieldWithNoDefault = Utils.load("avro-schema/TVShowWithSynopsis.avsc"); 
 		String schemaAddFieldWithDefault = Utils.load("avro-schema/TVShowWithSynopsisDefault.avsc");
@@ -36,7 +36,8 @@ public class TestAvroSchemaCompatibility {
 		// The Schema has no Schemas references
 		List<SchemaReference> references = Collections.emptyList();
 		
-		// Define the original schema and the new one
+		// Defines the Schemas to be testing:
+		// (previousSchemas contains just one TVShow.avsc schema and newScema contains the "incompatible" schema TVShowWithSynopsis.avsc
 		ParsedSchema previousSchema = avroSchemaProvider.parseSchema(tvShowSchema, references).get();
 		List<ParsedSchema> previousSchemas = new ArrayList<>();
 		previousSchemas.add(previousSchema);
