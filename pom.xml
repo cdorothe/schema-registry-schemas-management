@@ -1,0 +1,363 @@
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 https://maven.apache.org/xsd/maven-4.0.0.xsd">
+  <modelVersion>4.0.0</modelVersion>
+  <groupId>com.chdor</groupId>
+  <artifactId>schemaregistry-schemas-management</artifactId>
+  <name></name>
+  <description></description>
+  <version>0.0.1-SNAPSHOT</version>
+
+	<properties>
+		<avro.version>1.10.2</avro.version>	
+		<confluent.version>6.1.1</confluent.version>
+		<jackson.version>2.12.3</jackson.version>
+		<schemaRegistryUrl>http://nitt:8081</schemaRegistryUrl>
+    	<schemaRegistryBasicAuthUserInfo></schemaRegistryBasicAuthUserInfo>
+		
+ 		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+      	<project.reporting.outputEncoding>UTF-8</project.reporting.outputEncoding>
+      	<java.version>15</java.version>
+	</properties>
+
+	<repositories>
+    	<repository>
+      		<id>confluent</id>
+      		<name>Confluent</name>
+      		<url>https://packages.confluent.io/maven/</url>
+    	</repository>
+		
+		<!--  
+ 		<repository>
+		    <id>jitpack.io</id>
+		    <url>https://jitpack.io</url>
+ 		</repository>
+ 		-->
+ 		    	
+  	</repositories>
+	
+   <dependencies>
+    	
+		<!-- ########################################### -->
+	    <!-- Confluent Community Platform Dependencies   -->
+	    <!-- ########################################### -->
+
+		<!-- ====================================== -->
+	    <!-- Confluent Schema Registry Dependencies -->
+		<!-- ====================================== -->
+		<!-- https://mvnrepository.com/artifact/io.confluent/kafka-schema-registry -->
+		<dependency>
+		    <groupId>io.confluent</groupId>
+		    <artifactId>kafka-schema-registry</artifactId>
+		    <version>${confluent.version}</version>
+		</dependency>
+
+		<!-- https://mvnrepository.com/artifact/io.confluent/kafka-schema-registry-client -->
+		<dependency>
+		    <groupId>io.confluent</groupId>
+		    <artifactId>kafka-schema-registry-client</artifactId>
+		    <version>${confluent.version}</version>
+		</dependency>
+
+		<!-- https://mvnrepository.com/artifact/io.confluent/kafka-schema-serializer ${confluent.version} -->
+		<dependency>
+		    <groupId>io.confluent</groupId>
+		    <artifactId>kafka-schema-serializer</artifactId>
+		    <version>${confluent.version}</version>
+		</dependency>
+
+		<!-- ================================= -->
+	    <!-- Confluent Kafka Json Dependencies -->
+		<!-- ================================= -->
+		<!-- https://mvnrepository.com/artifact/io.confluent/kafka-json-serializer -->
+		<dependency>
+		    <groupId>io.confluent</groupId>
+		    <artifactId>kafka-json-serializer</artifactId>
+		    <version>${confluent.version}</version>
+		</dependency>
+	    
+		<!-- https://mvnrepository.com/artifact/io.confluent/kafka-json-schema-serializer -->
+		<dependency>
+		    <groupId>io.confluent</groupId>
+		    <artifactId>kafka-json-schema-serializer</artifactId>
+		    <version>${confluent.version}</version>
+		</dependency>
+
+		<!-- https://mvnrepository.com/artifact/io.confluent/kafka-json-schema-provider -->
+		<dependency>
+		    <groupId>io.confluent</groupId>
+		    <artifactId>kafka-json-schema-provider</artifactId>
+		    <version>${confluent.version}</version>
+		</dependency>
+
+		<!-- ================================= -->
+	    <!-- Confluent Kafka Avro Dependencies -->
+		<!-- ================================= -->
+		<!-- https://mvnrepository.com/artifact/io.confluent/kafka-avro-serializer --> 
+		<dependency>
+		    <groupId>io.confluent</groupId>
+		    <artifactId>kafka-avro-serializer</artifactId>
+		    <version>${confluent.version}</version>
+		</dependency>
+		
+		
+		<!-- https://mvnrepository.com/artifact/io.confluent/kafka-streams-avro-serde  
+		<dependency>
+		    <groupId>io.confluent</groupId>
+		    <artifactId>kafka-streams-avro-serde</artifactId>
+		    <version>${confluent.version}</version>
+		</dependency>
+		-->
+		
+		<!-- ================================= -->
+	    <!-- Confluent Kafka Dependencies      -->
+		<!-- ================================= -->
+		<!-- https://mvnrepository.com/artifact/org.apache.kafka/kafka 
+		<dependency>
+		    <groupId>org.apache.kafka</groupId>
+		    <artifactId>kafka_2.13</artifactId>
+		    <version>6.1.1-ccs</version>
+		</dependency>
+		-->
+		
+		<!-- ############################################# -->
+	    <!-- Avro Dependencies                             -->
+		<!-- ############################################# -->
+	    <!-- https://mvnrepository.com/artifact/org.apache.avro/avro -->
+		<dependency>
+		    <groupId>org.apache.avro</groupId>
+		    <artifactId>avro</artifactId>
+		    <version>${avro.version}</version>
+		</dependency>
+	    
+		<!-- https://mvnrepository.com/artifact/org.apache.avro/avro-maven-plugin -->
+		<dependency>
+		    <groupId>org.apache.avro</groupId>
+		    <artifactId>avro-maven-plugin</artifactId>
+		    <version>${avro.version}</version>
+		</dependency>
+	    
+	    <!-- https://mvnrepository.com/artifact/org.apache.avro/avro-compiler -->
+		<dependency>
+		    <groupId>org.apache.avro</groupId>
+		    <artifactId>avro-compiler</artifactId>
+		    <version>${avro.version}</version>
+		</dependency>
+
+		<!-- ################################## -->
+	    <!-- Jackson Dependencies               -->
+	    <!-- ################################## -->
+		<!-- https://mvnrepository.com/artifact/com.fasterxml.jackson.core/jackson-core -->
+		<dependency>
+	  		<groupId>com.fasterxml.jackson.core</groupId>
+	  		<artifactId>jackson-core</artifactId>
+	  		<version>${jackson.version}</version>
+	  	</dependency>
+	
+		<!-- https://mvnrepository.com/artifact/com.fasterxml.jackson.core/jackson-databind -->
+		<dependency>
+	  		<groupId>com.fasterxml.jackson.core</groupId>
+	  		<artifactId>jackson-databind</artifactId>
+	  		<version>${jackson.version}</version>
+	  	</dependency>
+	
+		<!-- https://mvnrepository.com/artifact/com.fasterxml.jackson.core/jackson-annotations -->
+		<dependency>
+	  		<groupId>com.fasterxml.jackson.core</groupId>
+	  		<artifactId>jackson-annotations</artifactId>
+	  		<version>${jackson.version}</version>
+		</dependency>
+
+  		<!-- ################################## -->
+	    <!-- Logback Dependencies               -->
+	    <!-- ################################## -->
+        <!-- https://mvnrepository.com/artifact/ch.qos.logback/logback-classic -->
+        <!-- logback-classic module -->
+        <dependency>
+            <groupId>ch.qos.logback</groupId>
+            <artifactId>logback-classic</artifactId>
+            <version>1.2.3</version>
+        </dependency>
+		
+		<!-- ################################## -->
+	    <!-- JSON Schema  Dependencies    -->
+	    <!-- ################################## -->
+		<!-- https://mvnrepository.com/artifact/com.kjetland/mbknor-jackson-jsonschema -->
+		<dependency>
+		    <groupId>com.kjetland</groupId>
+		    <artifactId>mbknor-jackson-jsonschema_2.13</artifactId>
+		    <version>1.0.39</version>
+		</dependency>
+
+		<!-- Everit JSON Schema -->
+		<!-- Implementation of the JSON Schema Core Draft v4 specification built with the org.json API -->
+		<!-- https://mvnrepository.com/artifact/org.bodil.openjdk/nashorn --> 
+		<!-- https://mvnrepository.com/artifact/com.github.erosb/everit-json-schema -->
+		<dependency>
+		    <groupId>com.github.erosb</groupId>
+		    <artifactId>everit-json-schema</artifactId>
+		    <version>1.12.2</version>
+		</dependency>
+
+		<!-- Java JSON Schema Generator – creating a JSON Schema (Draft 6, Draft 7 or Draft 2019-09) from your Java classes -->
+		<!-- https://mvnrepository.com/artifact/com.github.victools/jsonschema-generator -->
+		<!--  
+		<dependency>
+		    <groupId>com.github.victools</groupId>
+		    <artifactId>jsonschema-generator</artifactId>
+		    <version>4.18.0</version>
+		    <scope>provided</scope>
+		</dependency>
+		-->
+		
+		<!-- https://mvnrepository.com/artifact/com.github.saasquatch/json-schema-inferrer
+		<dependency>
+		    <groupId>com.github.saasquatch</groupId>
+		    <artifactId>json-schema-inferrer</artifactId>
+		    <version>0.1.3</version>
+		</dependency>
+		-->
+		
+		<!--  
+		<dependency>
+		    <groupId>net.jimblackler</groupId>
+		    <artifactId>jsonschematypes</artifactId>
+		    <version>0.8.1</version>
+		</dependency>
+		-->
+		
+		<!-- 
+		<dependency>
+		    <groupId>org.bodil.openjdk</groupId>
+		    <artifactId>nashorn</artifactId>
+		    <version>0.1.0.2013070801</version>
+		</dependency>
+		-->
+		
+		<!-- https://mvnrepository.com/artifact/com.networknt/json-schema-validator 
+		<dependency>
+		    <groupId>com.networknt</groupId>
+		    <artifactId>json-schema-validator</artifactId>
+		    <version>1.0.49</version>
+		</dependency>
+		-->
+		
+		<!-- https://mvnrepository.com/artifact/com.github.victools/jsonschema-generator 
+		<dependency>
+		    <groupId>com.github.victools</groupId>
+		    <artifactId>jsonschema-generator</artifactId>
+		    <version>4.17.0</version>
+		</dependency>
+		-->
+
+		<!-- ################################## -->
+	    <!-- JSON Schema to POJO Dependencies    -->
+	    <!-- ################################## -->
+		<!-- https://mvnrepository.com/artifact/org.jsonschema2pojo/jsonschema2pojo-maven-plugin -->
+		<dependency>
+		    <groupId>org.jsonschema2pojo</groupId>
+		    <artifactId>jsonschema2pojo-maven-plugin</artifactId>
+		    <version>1.1.1</version>
+		</dependency>
+
+    </dependencies>
+
+
+	<build>
+	
+		<resources>
+      		<resource>
+        		<directory>src/main/resources</directory>
+        		<includes>
+          			<include>**/*.json</include>
+          			<include>**/*.xml</include>
+          			<include>**/*.yml</include>
+          			<include>**/avro-schema/*.avsc</include>
+          			<include>**/json-schema/*.json</include>
+        		</includes>
+		       <!--  
+		        <excludes>
+		          <exclude>**/*test*.*</exclude>
+		        </excludes>
+		       -->
+      		</resource>
+    	</resources>
+	
+		<plugins>
+			<plugin>
+		    	<groupId>org.apache.maven.plugins</groupId>
+		        <artifactId>maven-compiler-plugin</artifactId>
+		        <configuration>
+		        	<source>${java.version}</source>
+		          	<target>${java.version}</target>
+		          	<showWarnings>true</showWarnings>
+					<showDeprecation>true</showDeprecation>
+		        </configuration>
+		    </plugin>
+
+	        <!-- Generate Java classes from an Avro Schema -->
+	        <!-- mvn generate-sources -->
+			<plugin>
+			    <groupId>org.apache.avro</groupId>
+			    <artifactId>avro-maven-plugin</artifactId>
+			    <version>${avro.version}</version>
+			        <executions>
+			            <execution>
+			                <phase>generate-sources</phase>
+			                <goals>
+			                    <goal>schema</goal>
+			                   <!--  <goal>protocol</goal> -->
+			                   <!--   <goal>idl-protocol</goal> -->
+			                </goals>
+			                <configuration>
+			                    <sourceDirectory>${basedir}/src/main/resources/avro-schema/</sourceDirectory>
+			                    <includes>
+              						<include>TVShow.avsc</include>
+            					</includes>
+			                    <outputDirectory>${basedir}/src/main/java</outputDirectory>
+			                    <!-- ${project.build.directory}/generated-sources -->
+			                    <!-- ${project.basedir}/target/generated-sources/avro -->
+			                </configuration>
+			            </execution>
+			        </executions>
+			</plugin>	        
+ 
+	        <!-- Generate Java classes from a JSON Schema -->
+	        <!-- http://joelittlejohn.github.io/jsonschema2pojo/site/0.4.22/generate-mojo.html -->	
+	        <!-- mvn generate-sources -->
+ 		    <plugin>
+                <groupId>org.jsonschema2pojo</groupId>
+                <artifactId>jsonschema2pojo-maven-plugin</artifactId>
+                <version>1.1.1</version>
+                <configuration>
+                    <sourceDirectory>${basedir}/src/main/resources/json-schema/TVShow.json</sourceDirectory>
+                    <outputDirectory>${basedir}/src/main/java/</outputDirectory>
+                    <useTitleAsClassname>true</useTitleAsClassname>
+                    <annotationStyle>jackson2</annotationStyle>
+                    <sourceType>jsonschema</sourceType>
+                    <generateBuilders>true</generateBuilders>
+					<useDoubleNumbers>true</useDoubleNumbers>
+					<includeGetters>true</includeGetters>					
+					<includeSetters>true</includeSetters>
+					<includeConstructors>true</includeConstructors>
+					<includeHashcodeAndEquals>true</includeHashcodeAndEquals>
+					<includeToString>true</includeToString>
+					<initializeCollections>true</initializeCollections>									
+                    <targetVersion>${java.version}</targetVersion>
+                    <!--  <refFragmentPathDelimiters>#/</refFragmentPathDelimiters> -->
+                    <targetPackage>com.chdor.schema_registry.schemas.management.json.model</targetPackage>
+                    <!--  <targetPackage>com.chdor.schema_registry.example.json.model</targetPackage> -->
+                </configuration>
+                <executions>
+                    <execution>
+                        <goals>
+                            <goal>generate</goal>
+                        </goals>
+                    </execution>
+                </executions>
+            </plugin>
+            
+
+		</plugins>
+		
+	</build>
+
+</project>

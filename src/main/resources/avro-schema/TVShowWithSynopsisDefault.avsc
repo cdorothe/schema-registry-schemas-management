@@ -1,0 +1,51 @@
+{
+  "type" : "record",
+  "name" : "TVShow",
+  "namespace" : "com.chdor.schema_registry.schemas.management.avro.model",
+  "doc" : "Descriptive card of series of the year 1970- 1980",
+  "fields" : [ {
+    "name" : "name",
+    "type" : "string",
+    "doc" : "Name of the Serie",
+    "order" : "ascending"
+  }, {
+    "name" : "date",
+    "type" : "int",
+    "doc" : "Serie release date",
+    "default" : -1,
+    "order" : "ascending"    
+  }, {
+    "name" : "characters",
+    "type" : {
+      "type" : "array",
+      "items" : {
+        "type" : "record",
+        "name" : "Character",
+        "doc" : "A tiny Series character identity card",
+        "fields" : [ {
+          "name" : "firstName",
+          "type" : [ "null", "string" ],
+          "doc" : "Character fisrt name"
+        }, {
+          "name" : "lastName",
+          "type" : [ "null", "string" ],
+          "doc" : "Character last name",
+          "default" : null
+        }, {
+          "name" : "age",
+          "type" : "int",
+          "doc" : "Character Age"
+        } ]
+      }
+    },
+    "doc" : "A tiny Series character identity card",
+    "order" : "ascending"
+  }, {
+    "name" : "synopsis",
+    "type" : [ "null", "string" ],
+    "doc" : "Serie quick scenario description",
+ 	"default" : null,
+    "order" : "ascending"
+  } ]
+}
+ 
