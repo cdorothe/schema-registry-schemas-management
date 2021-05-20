@@ -22,7 +22,7 @@ public class TVShowAvroPojo {
 		private String releaseDate = null;
 
 		@AvroDoc(value = "A tiny Series character identity card")
-		private List<Character> characters = null;
+		private List<CharacterAvroPojo> characters = null;
 
 		@AvroIgnore()
 		private String actor = null;
@@ -56,11 +56,11 @@ public class TVShowAvroPojo {
 			return this;
 		}
 
-		public List<Character> getCharacters() {
+		public List<CharacterAvroPojo> getCharacters() {
 			return characters;
 		}
 
-		public void setCharacters(List<Character> characters) {
+		public void setCharacters(List<CharacterAvroPojo> characters) {
 			this.characters = characters;
 		}
 
