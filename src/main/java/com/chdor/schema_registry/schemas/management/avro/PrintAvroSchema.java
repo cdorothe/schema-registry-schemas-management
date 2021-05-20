@@ -61,7 +61,7 @@ public class PrintAvroSchema {
 			System.out.println("- Schema Fields:");
 			for (Field field : fields) {
 				System.out.println("  - Field name: " + field.name());
-				//System.out.println("  - Field doc: " + field.schema().getDoc());
+				System.out.println("  - Field doc: " + field.doc());
 				System.out.println("  - Field position: " + field.pos());
 				System.out.println("  - Field type: " + field.schema().getType());
 				System.out.println("  - Field schema: " + field.schema().toString(true));
