@@ -41,7 +41,7 @@ public class CreateAvroSchemaFromScratch {
 	public static void createAvroSchemaWithSchemaBuilder() {
 
 		// Create an optional field, that means an union of type.
-		// Here: [NULL,Integer]
+		// Here: [null,string]
 		Schema  optionalNullString = SchemaBuilder.unionOf().nullType().and().stringType().endUnion();
 		
 		// Create AVRO Schema Character - A tiny Series character identity card
@@ -60,7 +60,7 @@ public class CreateAvroSchemaFromScratch {
 						.name("age").doc("Character Age").type().intType().noDefault()
 						.endRecord();
 
-		System.out.println("Main Actors of the Serie - Character AVRO Schema:\n" + character.toString(true) + "\n");
+		System.out.println("Character AVRO Schema:\n" + character.toString(true) + "\n");
 
 		// Create AVRO Schema - Serie Avro record
 		Schema tvShow =
@@ -76,10 +76,9 @@ public class CreateAvroSchemaFromScratch {
 						.name("date").doc("Serie release date").orderAscending().type().intType().intDefault(-1)
 						// Defines a list Serie Characters
 						.name("characters").doc("A tiny Series character identity card").orderAscending().type(Schema.createArray(character)).noDefault()
-						.name("synopsis").doc("Serie quick scenario description").orderDescending().type(optionalNullString).withDefault(null)
 						.endRecord();
 
-		System.out.println("TV Show Schema:\n" + tvShow.toString(false) + "\n");
+		System.out.println("TV Show Schema:\n" + tvShow.toString(true) + "\n");
 
 		// Create AVRO Schema - Serie Avro record with a one tiny Series character identity card
 		// It shows how to directly create a nested record ad how to use Field
@@ -102,35 +101,38 @@ public class CreateAvroSchemaFromScratch {
 
 		// Another way to create AVRO Schema - Serie Avro record with a one tiny Series character identity card
 		// It shows how to directly create a schema corresponding to our nested record
-		Schema tvShowCharacter1 =
+		Schema tvShowCharacterList =
 				// Create an AVRO record and set its name, namespace and doc fields
 				SchemaBuilder.record("TVShowWithOrdering")
 						.namespace("com.chdor.schema_registry.schemas.management.avro.model")
 						.doc("Descriptive card of series of the year 1970- 1980")
 						// Add fields
-						.fields()
-						.name("name").doc("Name of the Serie").orderAscending().type(optionalNullString).noDefault()
-						.name("date").doc("Serie release date").orderAscending().type().intType().intDefault(-1)
-						.name("characters").doc("Descriptive card of hero actors").orderAscending().type(Schema.createArray(
-								SchemaBuilder.record("Character").namespace("com.chdor.schema_registry.schemas.management.avro.model").doc("A tiny Series character identity card")
+						.fields().name("name").doc("Name of the Serie").orderDescending().type(optionalNullString)
+						.noDefault().name("date").doc("Serie release date").orderDescending().type().intType()
+						.intDefault(-1).name("characters").doc("Descriptive card of hero actors").orderDescending()
+						.type(Schema.createArray(SchemaBuilder.record("Character")
+								.namespace("com.chdor.schema_registry.schemas.management.avro.model")
+								.doc("A tiny Series character identity card")
 								// Add fields
-								.fields().name("firstName").doc("Character fisrt name").type().stringType().noDefault()
-								.name("lastName").doc("Character last name").type().stringType().stringDefault("Doe")
-								.endRecord())).noDefault()
-						.endRecord();
-		
-		System.out
-				.println("TV Show Schema with ordering properties:\n" + tvShowCharacter1.toString(true) + "\n");
+								.fields().name("firstName").doc("Character fisrt name").orderDescending().type()
+								.stringType().noDefault().name("lastName").doc("Character last name").type()
+								.stringType().stringDefault("Doe").endRecord()))
+						.noDefault().endRecord();
 
+		System.out.println("TV Show Schema with ordering properties:\n" + tvShowCharacterList.toString(true) + "\n");
 		
 		// Convert the org.apache.avro.Schema to io.confluent.kafka.schemaregistry.avro.AvroSchema
 		AvroSchema avroSchema = new AvroSchema(tvShow);
+		// Fails if Schema is invalid
 		avroSchema.validate();
-		
+		// Build our AvroSchemaProvider 
 		AvroSchemaProvider avroSchemaProvider = new AvroSchemaProvider();
-		ParsedSchema parsedSchema = avroSchemaProvider.parseSchema(tvShow.toString(true), new ArrayList<>())
+		// Load the Schema by parsing it
+		ParsedSchema parsedSchema = avroSchemaProvider.parseSchema(tvShowCharacterList.toString(true), new ArrayList<>())
 				.get();
+		// Convert the ParsedSchema to an AvroSchema
 		avroSchema = (AvroSchema) parsedSchema;
+		// Fails if Schema is invalid
 		avroSchema.validate();
 
 		System.out.println("TV Show AvroSchema:\n" + avroSchema.rawSchema().toString(true));
@@ -147,7 +149,7 @@ public class CreateAvroSchemaFromScratch {
 	public static void createAvroSchemaWithConfluentSchemaRegistry() {
 		// Defines some AVRO Schema variables
 		// The Schema String
-		String initialSchema = "{\"type\":\"record\",\"name\":\"TVShow\",\"namespace\":\"com.chdor.schema_registry.schemas.management.avro.model\",\"doc\":\"Descriptive card of series of the year 1970- 1980\",\"fields\":[{\"name\":\"name\",\"type\":\"string\",\"doc\":\"Name of the Serie\"},{\"name\":\"date\",\"type\":\"int\",\"doc\":\"Serie release date\",\"default\":-1},{\"name\":\"characters\",\"type\":{\"type\":\"array\",\"items\":{\"type\":\"record\",\"name\":\"Character\",\"doc\":\"A tiny Series character identity card\",\"fields\":[{\"name\":\"firstName\",\"type\":[\"null\",\"string\"],\"doc\":\"Character fisrt name\"},{\"name\":\"lastName\",\"type\":[\"null\",\"string\"],\"doc\":\"Character last name\",\"default\":null},{\"name\":\"age\",\"type\":\"int\",\"doc\":\"Character Age\"}]}},\"doc\":\"A tiny Series character identity card\"}]}";
+		String schemaString = "{\"type\":\"record\",\"name\":\"TVShow\",\"namespace\":\"com.chdor.schema_registry.schemas.management.avro.model\",\"doc\":\"Descriptive card of series of the year 1970- 1980\",\"fields\":[{\"name\":\"name\",\"type\":\"string\",\"doc\":\"Name of the Serie\"},{\"name\":\"date\",\"type\":\"int\",\"doc\":\"Serie release date\",\"default\":-1},{\"name\":\"characters\",\"type\":{\"type\":\"array\",\"items\":{\"type\":\"record\",\"name\":\"Character\",\"doc\":\"A tiny Series character identity card\",\"fields\":[{\"name\":\"firstName\",\"type\":[\"null\",\"string\"],\"doc\":\"Character fisrt name\"},{\"name\":\"lastName\",\"type\":[\"null\",\"string\"],\"doc\":\"Character last name\",\"default\":null},{\"name\":\"age\",\"type\":\"int\",\"doc\":\"Character Age\"}]}},\"doc\":\"A tiny Series character identity card\"}]}";
 		// The Schema has no Schemas references
 		List<SchemaReference> references = Collections.emptyList();
 		// The Schema has no Schemas resolved references
@@ -158,7 +160,7 @@ public class CreateAvroSchemaFromScratch {
 		boolean isNew = true;
 
 		// Create AvroSchema
-		AvroSchema avroSchema = new AvroSchema(initialSchema, references, resolvedReferences, version, isNew);
+		AvroSchema avroSchema = new AvroSchema(schemaString, references, resolvedReferences, version, isNew);
 		// Validates the schema and ensures all references are resolved properly. Throws an exception if the schema is not valid.
 		avroSchema.validate();
 		System.out.println("Create Avro Schema with AvroSchema:\n" + avroSchema.rawSchema().toString(true) + "\n");
@@ -166,7 +168,7 @@ public class CreateAvroSchemaFromScratch {
 		// Create AVRO Schema with AvroSchemaProvider
 		AvroSchemaProvider avroSchemaProvider = new AvroSchemaProvider();
 		// Use AvroSchemaProvider to parse the Avro Schema String and return an optional ParsedSchema
-		Optional<ParsedSchema> optionalParsedSchema = avroSchemaProvider.parseSchema(initialSchema, references, isNew);
+		Optional<ParsedSchema> optionalParsedSchema = avroSchemaProvider.parseSchema(schemaString, references, isNew);
 		// Get the ParseSchema
 		ParsedSchema parsedSchema = optionalParsedSchema.get();
 		// Convert the ParsedSchema into AvroScheme
