@@ -2,24 +2,21 @@ package com.chdor.schema_registry.schemas.management.avro.model;
 
 import org.apache.avro.reflect.AvroDefault;
 import org.apache.avro.reflect.AvroDoc;
-import org.apache.avro.reflect.AvroSchema;
 
 @AvroDoc("A tiny Series character identity card")
 public class CharacterAvroPojo {
 	
-	@AvroSchema(value = "\"string\"")
 	@AvroDoc(value = "First Name of the Character")
-	@AvroDefault(value = "\"John\"")
+	@AvroDefault("\"Mark\"")
 	private String firstName = null;
 	
 	@AvroDoc(value = "Last Name of the Character")
-	@AvroDefault(value = "\"Doe\"")
+	@AvroDefault("\"Harris\"")
 	private String lastName = null;
 
 	@AvroDoc(value = "Character Age")
-	@AvroDefault(value = "0")
+	@AvroDefault(value = "30")
 	private Integer age = null;
-
 
     // Getters & Setters
 
