@@ -5,22 +5,22 @@
   "type": "object",
   "title": "TVShow",
   "definitions": {"Character": {
-    "description": "A tiny Series character identity card",
+    "description": "A tiny Serie character identity card",
     "additionalProperties": false,
     "type": "object",
     "properties": {
       "firstname": {
-        "default": "John",
+        "default": "Mark",
         "propertyOrder": 1,
         "type": "string"
       },
       "age": {
-        "default": 0,
+        "default": 30,
         "propertyOrder": 2,
         "type": "number"
       },
       "lastname": {
-        "default": "Doe",
+        "default": "Harris",
         "propertyOrder": 3,
         "type": "string"
       }
@@ -29,6 +29,7 @@
   }},
   "properties": {
     "date": {
+      "default": "1977",
       "propertyOrder": 1,
       "type": "string"
     },
@@ -38,6 +39,7 @@
       "items": {"$ref": "#/definitions/Character"}
     },
     "name": {
+      "default": "Man from Atlantis",
       "propertyOrder": 3,
       "type": "string"
     }

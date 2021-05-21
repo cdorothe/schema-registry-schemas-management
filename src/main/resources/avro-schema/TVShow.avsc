@@ -7,12 +7,13 @@
     "name" : "name",
     "type" : "string",
     "doc" : "Name of the Serie",
-    "order" : "ascending"
+    "order" : "ascending",
+    "default" : "Man from Atlantis"
   }, {
     "name" : "date",
     "type" : "int",
     "doc" : "Serie release date",
-    "default" : -1,
+    "default" : 1977,
     "order" : "ascending"
   }, {
     "name" : "characters",
@@ -21,7 +22,7 @@
       "items" : {
         "type" : "record",
         "name" : "Character",
-        "doc" : "A tiny Series character identity card",
+        "doc" : "A tiny Serie character identity card",
         "fields" : [ {
           "name" : "firstName",
           "type" : [ "null", "string" ],
@@ -29,12 +30,12 @@
         }, {
           "name" : "lastName",
           "type" : [ "null", "string" ],
-          "doc" : "Character last name",
-          "default" : null
+          "doc" : "Character last name"
         }, {
           "name" : "age",
           "type" : "int",
-          "doc" : "Character Age"
+          "doc" : "Character Age",
+          "default" : 0
         } ]
       }
     },
