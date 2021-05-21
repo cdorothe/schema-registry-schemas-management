@@ -11,7 +11,7 @@ import org.apache.avro.reflect.AvroMeta;
 import org.apache.avro.reflect.AvroSchema;
 import org.apache.avro.reflect.DateAsLongEncoding;
 
-@AvroAlias(alias = "TVShow",space = "com.chdor.schema_registry.schemas.management.avro.model")
+@AvroAlias(alias = "seasons",space = "com.chdor.schema_registry.schemas.management.avro.model.extended")
 @AvroDoc(value = "Descriptive card of series of the year 1970- 1980")
 public class TVShowAvroPojoAnnoted {
 		
