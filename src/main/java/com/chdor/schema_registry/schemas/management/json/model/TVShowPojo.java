@@ -21,7 +21,6 @@ import com.kjetland.jackson.jsonSchema.annotations.JsonSchemaTitle;
 @JsonPropertyOrder({ "name", "date", "characters" })
 
 @JsonSchemaTitle("TVShow")
-//@JsonSchemaFormat("string")
 @JsonSchemaDescription("Descriptive card of series of the year 1970- 1980")
 public class TVShowPojo {
 
