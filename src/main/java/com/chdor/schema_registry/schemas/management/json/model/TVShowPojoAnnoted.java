@@ -20,9 +20,9 @@ import com.kjetland.jackson.jsonSchema.annotations.JsonSchemaTitle;
 
 
 /**
- * TVSeriesActor
- * <p>
- * TV Show Actor info
+ * TVShow Full JSON Schema annotations POJO
+ * @author Christophe Dorothé</br>
+ * Contact: kristophe.dorothe@gmail.com
  * 
  */
 @JsonInclude(JsonInclude.Include.NON_NULL)

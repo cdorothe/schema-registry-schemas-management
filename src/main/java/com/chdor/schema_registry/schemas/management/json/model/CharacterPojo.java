@@ -12,10 +12,10 @@ import com.kjetland.jackson.jsonSchema.annotations.JsonSchemaTitle;
 
 
 /**
- * TVSeriesActor
- * <p>
- * TV Show Actor info
- * 
+ * Character JSON Schema proper annotations POJO
+ * @author Christophe Dorothé</br>
+ * Contact: kristophe.dorothe@gmail.com
+ *
  */
 @JsonInclude(JsonInclude.Include.NON_NULL)
 @JsonPropertyOrder({
@@ -26,6 +26,7 @@ import com.kjetland.jackson.jsonSchema.annotations.JsonSchemaTitle;
 
 @JsonSchemaTitle("Character")
 @JsonSchemaDescription("A tiny Series character identity card")
+
 public class CharacterPojo {
 
 	@JsonSchemaDefault("Mark")
