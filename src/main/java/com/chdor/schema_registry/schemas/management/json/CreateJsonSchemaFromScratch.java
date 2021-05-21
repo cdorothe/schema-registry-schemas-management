@@ -45,9 +45,8 @@ public class CreateJsonSchemaFromScratch {
 		createJsonSchemaWithJsonSchemaValidator();
 		createJsonSchemaWithSchemaRegistry();
 		
+		//createJsonSchemaWithJsonNode();
 		//createJsonSchemaWithJsonSchemaGenerator();
-		
-		//createJsonSchemaWithVictools();
 	}
 
 	/**
@@ -162,7 +161,7 @@ public class CreateJsonSchemaFromScratch {
 				// Sets $id value 
 				.unprocessedProperties(schemaOpts).id("http://com.chdor.schema_registry.schemas.management.json.model")
 				// Sets Schema name. By using this way, we prevent the name of the schema to be auto compute with a Camel Case algorithm 
-				.title("TVShow1")
+				.title("TVShow")
 				// Sets Schema description. 
 				.description("Descriptive card of series of the year 1970- 1980")
 				.build();
