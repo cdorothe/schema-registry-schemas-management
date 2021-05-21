@@ -2,15 +2,18 @@ package com.chdor.schema_registry.schemas.management.avro.model;
 
 import java.util.List;
 
+import org.apache.avro.reflect.AvroDefault;
 import org.apache.avro.reflect.AvroDoc;
 
 @AvroDoc(value = "Descriptive card of series of the year 1970- 1980")
 public class TVShowAvroPojo {
 		
 		@AvroDoc(value = "Name of the Serie")
+		@AvroDefault("\"Man from Atlantis\"")
 		private String name = null;
 		
 		@AvroDoc(value = "Release Date of the Serie")
+		@AvroDefault("\"1977\"")
 		private String date = null;
 
 		@AvroDoc(value = "A tiny Serie character identity card")
