@@ -9,15 +9,15 @@ public class CharacterAvroPojoAnnoted {
 	
 	@AvroSchema(value = "\"string\"")
 	@AvroDoc(value = "First Name of the Character")
-	@AvroDefault(value = "\"John\"")
+	@AvroDefault("\"Mark\"")
 	private String firstName = null;
 	
 	@AvroDoc(value = "Last Name of the Character")
-	@AvroDefault(value = "\"Doe\"")
+	@AvroDefault("\"Harris\"")
 	private String lastName = null;
 
 	@AvroDoc(value = "Character Age")
-	@AvroDefault(value = "33")
+	@AvroDefault(value = "30")
 	private Integer age = null;
 
 
