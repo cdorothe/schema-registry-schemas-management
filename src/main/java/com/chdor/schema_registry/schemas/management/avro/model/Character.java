@@ -12,11 +12,11 @@ import org.apache.avro.message.BinaryMessageEncoder;
 import org.apache.avro.message.BinaryMessageDecoder;
 import org.apache.avro.message.SchemaStore;
 
-/** A tiny Series character identity card */
+/** A tiny Serie character identity card */
 @org.apache.avro.specific.AvroGenerated
 public class Character extends org.apache.avro.specific.SpecificRecordBase implements org.apache.avro.specific.SpecificRecord {
   private static final long serialVersionUID = 4396385489569406944L;
-  public static final org.apache.avro.Schema SCHEMA$ = new org.apache.avro.Schema.Parser().parse("{\"type\":\"record\",\"name\":\"Character\",\"namespace\":\"com.chdor.schema_registry.schemas.management.avro.model\",\"doc\":\"A tiny Series character identity card\",\"fields\":[{\"name\":\"firstName\",\"type\":[\"null\",\"string\"],\"doc\":\"Character fisrt name\"},{\"name\":\"lastName\",\"type\":[\"null\",\"string\"],\"doc\":\"Character last name\",\"default\":null},{\"name\":\"age\",\"type\":\"int\",\"doc\":\"Character Age\"}]}");
+  public static final org.apache.avro.Schema SCHEMA$ = new org.apache.avro.Schema.Parser().parse("{\"type\":\"record\",\"name\":\"Character\",\"namespace\":\"com.chdor.schema_registry.schemas.management.avro.model\",\"doc\":\"A tiny Serie character identity card\",\"fields\":[{\"name\":\"firstName\",\"type\":[\"null\",\"string\"],\"doc\":\"Character fisrt name\"},{\"name\":\"lastName\",\"type\":[\"null\",\"string\"],\"doc\":\"Character last name\"},{\"name\":\"age\",\"type\":\"int\",\"doc\":\"Character Age\",\"default\":0}]}");
   public static org.apache.avro.Schema getClassSchema() { return SCHEMA$; }
 
   private static SpecificData MODEL$ = new SpecificData();
