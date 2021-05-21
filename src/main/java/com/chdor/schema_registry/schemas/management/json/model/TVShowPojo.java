@@ -6,6 +6,8 @@ import java.util.List;
 import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.annotation.JsonPropertyOrder;
+import com.kjetland.jackson.jsonSchema.annotations.JsonSchemaDefault;
+import com.kjetland.jackson.jsonSchema.annotations.JsonSchemaDescription;
 import com.kjetland.jackson.jsonSchema.annotations.JsonSchemaTitle;
 
 
@@ -20,16 +22,21 @@ import com.kjetland.jackson.jsonSchema.annotations.JsonSchemaTitle;
 
 @JsonSchemaTitle("TVShow")
 //@JsonSchemaFormat("string")
-
+@JsonSchemaDescription("Descriptive card of series of the year 1970- 1980")
 public class TVShowPojo {
 
 	@JsonProperty("name")
+	@JsonSchemaDefault("Man from Atlantis")
+	@JsonSchemaDescription("Serie's name")
 	private String name;
 
 	@JsonProperty("date")
+	@JsonSchemaDefault(value = "1977")
+	@JsonSchemaDescription("Serie's release year")
 	private Integer date;
     
     @JsonProperty("characters")
+	@JsonSchemaDescription("Characters in the Serie")
     private List<CharacterPojo> characters;
     
 	public String getName() {

@@ -6,6 +6,7 @@ import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.annotation.JsonPropertyOrder;
 import com.fasterxml.jackson.annotation.JsonSetter;
+import com.kjetland.jackson.jsonSchema.annotations.JsonSchemaDefault;
 import com.kjetland.jackson.jsonSchema.annotations.JsonSchemaDescription;
 import com.kjetland.jackson.jsonSchema.annotations.JsonSchemaTitle;
 
@@ -27,12 +28,19 @@ import com.kjetland.jackson.jsonSchema.annotations.JsonSchemaTitle;
 @JsonSchemaDescription("A tiny Series character identity card")
 public class CharacterPojo {
 
+	@JsonSchemaDefault("Mark")
+	@JsonSchemaDescription("Character's firstname")
     @JsonProperty("firstname")
     private String firstName;
 
+	@JsonSchemaDefault("Harris")
+	@JsonSchemaDescription("Character's lastname")
 	@JsonProperty("lastname")
     private String lastName;
-    @JsonProperty("age")
+   
+	@JsonSchemaDefault("30")
+	@JsonSchemaDescription("Character's age")
+	@JsonProperty("age")
     private Integer age;
     
 	@JsonGetter("firstname")
