@@ -18,9 +18,9 @@ import com.fasterxml.jackson.annotation.JsonPropertyOrder;
  */
 @JsonInclude(JsonInclude.Include.NON_NULL)
 @JsonPropertyOrder({
+    "name",
     "date",
-    "characters",
-    "name"
+    "characters"
 })
 @Generated("jsonschema2pojo")
 public class TVShow {
