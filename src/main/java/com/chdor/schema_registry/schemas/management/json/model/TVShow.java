@@ -6,6 +6,7 @@ import java.util.List;
 import javax.annotation.processing.Generated;
 import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.annotation.JsonProperty;
+import com.fasterxml.jackson.annotation.JsonPropertyDescription;
 import com.fasterxml.jackson.annotation.JsonPropertyOrder;
 
 
@@ -24,12 +25,27 @@ import com.fasterxml.jackson.annotation.JsonPropertyOrder;
 @Generated("jsonschema2pojo")
 public class TVShow {
 
+    /**
+     * Serie's release year
+     * 
+     */
     @JsonProperty("date")
-    private String date;
+    @JsonPropertyDescription("Serie's release year")
+    private Integer date = 1977;
+    /**
+     * Characters in the Serie
+     * 
+     */
     @JsonProperty("characters")
+    @JsonPropertyDescription("Characters in the Serie")
     private List<Character> characters = new ArrayList<Character>();
+    /**
+     * Serie's name
+     * 
+     */
     @JsonProperty("name")
-    private String name;
+    @JsonPropertyDescription("Serie's name")
+    private String name = "Man from Atlantis";
 
     /**
      * No args constructor for use in serialization
@@ -44,33 +60,49 @@ public class TVShow {
      * @param characters
      * @param name
      */
-    public TVShow(String date, List<Character> characters, String name) {
+    public TVShow(Integer date, List<Character> characters, String name) {
         super();
         this.date = date;
         this.characters = characters;
         this.name = name;
     }
 
+    /**
+     * Serie's release year
+     * 
+     */
     @JsonProperty("date")
-    public String getDate() {
+    public Integer getDate() {
         return date;
     }
 
+    /**
+     * Serie's release year
+     * 
+     */
     @JsonProperty("date")
-    public void setDate(String date) {
+    public void setDate(Integer date) {
         this.date = date;
     }
 
-    public TVShow withDate(String date) {
+    public TVShow withDate(Integer date) {
         this.date = date;
         return this;
     }
 
+    /**
+     * Characters in the Serie
+     * 
+     */
     @JsonProperty("characters")
     public List<Character> getCharacters() {
         return characters;
     }
 
+    /**
+     * Characters in the Serie
+     * 
+     */
     @JsonProperty("characters")
     public void setCharacters(List<Character> characters) {
         this.characters = characters;
@@ -81,11 +113,19 @@ public class TVShow {
         return this;
     }
 
+    /**
+     * Serie's name
+     * 
+     */
     @JsonProperty("name")
     public String getName() {
         return name;
     }
 
+    /**
+     * Serie's name
+     * 
+     */
     @JsonProperty("name")
     public void setName(String name) {
         this.name = name;

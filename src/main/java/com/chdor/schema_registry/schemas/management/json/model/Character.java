@@ -4,10 +4,13 @@ package com.chdor.schema_registry.schemas.management.json.model;
 import javax.annotation.processing.Generated;
 import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.annotation.JsonProperty;
+import com.fasterxml.jackson.annotation.JsonPropertyDescription;
 import com.fasterxml.jackson.annotation.JsonPropertyOrder;
 
 
 /**
+ * Character
+ * <p>
  * A tiny Series character identity card
  * 
  */
@@ -20,12 +23,27 @@ import com.fasterxml.jackson.annotation.JsonPropertyOrder;
 @Generated("jsonschema2pojo")
 public class Character {
 
+    /**
+     * Character's firstname
+     * 
+     */
     @JsonProperty("firstname")
-    private String firstname = "John";
+    @JsonPropertyDescription("Character's firstname")
+    private String firstname = "Mark";
+    /**
+     * Character's age
+     * 
+     */
     @JsonProperty("age")
-    private Double age = 0.0D;
+    @JsonPropertyDescription("Character's age")
+    private Integer age = 30;
+    /**
+     * Character's lastname
+     * 
+     */
     @JsonProperty("lastname")
-    private String lastname = "Doe";
+    @JsonPropertyDescription("Character's lastname")
+    private String lastname = "Harris";
 
     /**
      * No args constructor for use in serialization
@@ -40,18 +58,26 @@ public class Character {
      * @param age
      * @param lastname
      */
-    public Character(String firstname, Double age, String lastname) {
+    public Character(String firstname, Integer age, String lastname) {
         super();
         this.firstname = firstname;
         this.age = age;
         this.lastname = lastname;
     }
 
+    /**
+     * Character's firstname
+     * 
+     */
     @JsonProperty("firstname")
     public String getFirstname() {
         return firstname;
     }
 
+    /**
+     * Character's firstname
+     * 
+     */
     @JsonProperty("firstname")
     public void setFirstname(String firstname) {
         this.firstname = firstname;
@@ -62,26 +88,42 @@ public class Character {
         return this;
     }
 
+    /**
+     * Character's age
+     * 
+     */
     @JsonProperty("age")
-    public Double getAge() {
+    public Integer getAge() {
         return age;
     }
 
+    /**
+     * Character's age
+     * 
+     */
     @JsonProperty("age")
-    public void setAge(Double age) {
+    public void setAge(Integer age) {
         this.age = age;
     }
 
-    public Character withAge(Double age) {
+    public Character withAge(Integer age) {
         this.age = age;
         return this;
     }
 
+    /**
+     * Character's lastname
+     * 
+     */
     @JsonProperty("lastname")
     public String getLastname() {
         return lastname;
     }
 
+    /**
+     * Character's lastname
+     * 
+     */
     @JsonProperty("lastname")
     public void setLastname(String lastname) {
         this.lastname = lastname;
