@@ -39,9 +39,11 @@ public class TestAvroSchemaCompatibility {
 		// Defines the Schemas to be testing:
 		// (previousSchemas contains just one TVShow.avsc schema and newScema contains the "incompatible" schema TVShowWithSynopsis.avsc
 		ParsedSchema previousSchema = avroSchemaProvider.parseSchema(tvShowSchema, references).get();
+		previousSchema.validate();
 		List<ParsedSchema> previousSchemas = new ArrayList<>();
 		previousSchemas.add(previousSchema);
 		ParsedSchema newSchema = avroSchemaProvider.parseSchema(schemaAddFieldWithNoDefault, references).get();
+		newSchema.validate();
 
 		// Check Schema Compatibility - 1st case failed: The schemas are backward
 		// incompatible. The new schema has not declared a default value for the new
@@ -52,6 +54,7 @@ public class TestAvroSchemaCompatibility {
 		// Check Schema Compatibility - 2nd case: The schemas are backward
 		// compatible. The new adding field 'synopsis' has a default value 
 		newSchema = avroSchemaProvider.parseSchema(schemaAddFieldWithDefault, references).get();
+		newSchema.validate();
 		compatibilityResult = compatibilityChecker.isCompatible(newSchema, previousSchemas);
 		System.out.println("\nThe Schemas are compatible");
 
