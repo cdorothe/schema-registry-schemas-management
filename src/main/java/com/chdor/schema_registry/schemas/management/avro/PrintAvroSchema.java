@@ -36,8 +36,12 @@ public class PrintAvroSchema {
 		Optional<ParsedSchema> avroParsedSchema = avroSchemaProvider.parseSchema(avroSchemaString, references);
 		// Retrieve the effective AVRO schema
 		ParsedSchema parsedSchema = avroParsedSchema.get();
+		// Ensure that our ParsedSchema is valid. Throws an exception if the schema is not valid. 
+		parsedSchema.validate();
 		// Cast the schema to AvroSchema
 		AvroSchema avroSchema = (AvroSchema) parsedSchema;
+		// Ensure that our AvroSchema is valid. Throws an exception if the schema is not valid. 
+		avroSchema.validate();
 
 		// Prints Schema Infos
 		System.out.println("Display some Schema Infos:");
