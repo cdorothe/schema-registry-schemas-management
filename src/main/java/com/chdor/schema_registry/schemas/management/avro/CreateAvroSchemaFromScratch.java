@@ -29,7 +29,7 @@ public class CreateAvroSchemaFromScratch {
 
 	public static void main(String[] args) {
 
-		createAvroSchemaWithSchemaBuilder();
+		//createAvroSchemaWithSchemaBuilder();
 		createAvroSchemaWithConfluentSchemaRegistry();
 
 	}
@@ -121,21 +121,24 @@ public class CreateAvroSchemaFromScratch {
 
 		System.out.println("TV Show Schema with ordering properties:\n" + tvShowCharacterList.toString(true) + "\n");
 		
+		// First Method by using AvroSchema
 		// Convert the org.apache.avro.Schema to io.confluent.kafka.schemaregistry.avro.AvroSchema
 		AvroSchema avroSchema = new AvroSchema(tvShow);
 		// Fails if Schema is invalid
 		avroSchema.validate();
-		// Build our AvroSchemaProvider 
+		System.out.println("TV Show AvroSchema:\n" + avroSchema.rawSchema().toString(true));
+		
+		// Second Method by using AvroSchemaProvider
 		AvroSchemaProvider avroSchemaProvider = new AvroSchemaProvider();
-		// Load the Schema by parsing it
-		ParsedSchema parsedSchema = avroSchemaProvider.parseSchema(tvShowCharacterList.toString(true), new ArrayList<>())
+		// Get the ParsedSchema created from the Avro Schema pass as String.
+		ParsedSchema parsedSchema = avroSchemaProvider.parseSchema(tvShow.toString(true), new ArrayList<>())
 				.get();
 		// Convert the ParsedSchema to an AvroSchema
 		avroSchema = (AvroSchema) parsedSchema;
 		// Fails if Schema is invalid
 		avroSchema.validate();
 
-		System.out.println("TV Show AvroSchema:\n" + avroSchema.rawSchema().toString(true));
+		System.out.println("TV Show AvroSchema by AvroSchemaProvider:\n" + avroSchema.rawSchema().toString(true));
 		
 	}
 	
@@ -163,6 +166,7 @@ public class CreateAvroSchemaFromScratch {
 		AvroSchema avroSchema = new AvroSchema(schemaString, references, resolvedReferences, version, isNew);
 		// Validates the schema and ensures all references are resolved properly. Throws an exception if the schema is not valid.
 		avroSchema.validate();
+		// Display it
 		System.out.println("Create Avro Schema with AvroSchema:\n" + avroSchema.rawSchema().toString(true) + "\n");
 
 		// Create AVRO Schema with AvroSchemaProvider
@@ -175,6 +179,7 @@ public class CreateAvroSchemaFromScratch {
 		avroSchema = (AvroSchema) parsedSchema;
 		// Validates the schema and ensures all references are resolved properly. Throws an exception if the schema is not valid.
 		avroSchema.validate();
+		// Display it
 		System.out.println("Create Avro Schema with AvroSchemaProvider:\n" + avroSchema.rawSchema().toString(true) + "\n");
 
 		// Display AVRO Schema Primitives supported
