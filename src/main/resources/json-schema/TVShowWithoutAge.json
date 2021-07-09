@@ -2,40 +2,34 @@
   "$schema": "http://json-schema.org/draft-07/schema#",
   "description": "Descriptive card of series of the year 1970- 1980",
   "additionalProperties": false,
-  "title": "TVShow",
   "type": "object",
+  "title": "TVShow",
   "definitions": {"Character": {
     "description": "A tiny Series character identity card",
     "additionalProperties": false,
     "type": "object",
-    "title": "Character",
     "properties": {
       "firstname": {
-        "propertyOrder": 1,
         "default": "Mark",
-        "description": "Character's firstname",
+		"description": "Character's firstname",
+        "propertyOrder": 1,
         "type": "string"
-      },
-      "age": {
-        "propertyOrder": 3,
-        "default": 30,
-        "description": "Character's age",
-        "type": "integer"
       },
       "lastname": {
-        "propertyOrder": 2,
         "default": "Harris",
-        "description": "Character's lastname",
+		"description": "Character's lastname",
+        "propertyOrder": 2,
         "type": "string"
       }
-    }
+    },
+    "$id": "http://com.chdor.schema_registry.schemas.management.json.model"
   }},
   "properties": {
     "date": {
-      "propertyOrder": 2,
-      "default": 1977,
+      "default": "1977",
       "description": "Serie's release year",
-      "type": "integer"
+      "propertyOrder": 2,
+      "type": "string"
     },
     "characters": {
       "propertyOrder": 3,
@@ -46,9 +40,10 @@
     },
     "name": {
       "propertyOrder": 1,
-      "default": "Man from Atlantis",
+      "type": "string",
       "description": "Serie's name",
-      "type": "string"
+      "default": "Man from Atlantis"
     }
-  }
+  },
+  "$id": "http://com.chdor.schema_registry.schemas.management.json.model"
 }
