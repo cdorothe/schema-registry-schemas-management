@@ -5,7 +5,7 @@
   "type": "object",
   "title": "TVShowEX",
   "properties": {
-    "date": {"type": "string"},
+    "releaseDate": {"type": "string"},
     "characters": {
       "type": "array",
       "items": [{
