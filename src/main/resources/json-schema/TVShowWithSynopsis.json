@@ -31,7 +31,7 @@
     "$id": "http://com.chdor.schema_registry.schemas.management.json.model"
   }},
   "properties": {
-    "date": {
+    "releaseDate": {
       "propertyOrder": 2,
       "default": 1977,
       "description": "Serie's release year",
