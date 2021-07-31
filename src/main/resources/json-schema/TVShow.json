@@ -13,41 +13,41 @@
       "firstname": {
         "propertyOrder": 1,
         "default": "Mark",
-        "description": "Character's firstname",
+        "description": "Character first name",
         "type": "string"
       },
       "age": {
         "propertyOrder": 3,
         "default": 30,
-        "description": "Character's age",
+        "description": "Character age",
         "type": "integer"
       },
       "lastname": {
         "propertyOrder": 2,
         "default": "Harris",
-        "description": "Character's lastname",
+        "description": "Character last name",
         "type": "string"
       }
     }
   }},
   "properties": {
-    "date": {
+    "releaseDate": {
       "propertyOrder": 2,
       "default": 1977,
-      "description": "Serie's release year",
+      "description": "Serie release year",
       "type": "integer"
     },
     "characters": {
       "propertyOrder": 3,
       "format": "Character Record",
-      "description": "Characters in the Serie",
+      "description": "Serie main characters",
       "type": "array",
       "items": {"$ref": "#/definitions/Character"}
     },
     "name": {
       "propertyOrder": 1,
       "default": "Man from Atlantis",
-      "description": "Serie's name",
+      "description": "Serie name",
       "type": "string"
     }
   }
